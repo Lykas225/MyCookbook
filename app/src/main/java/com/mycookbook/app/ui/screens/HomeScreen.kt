@@ -3,7 +3,9 @@ package com.mycookbook.app.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,6 +28,7 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(18.dp)
     ) {
         Text(
@@ -60,7 +63,9 @@ fun HomeScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     Button(
                         onClick = { onPremiumChange(true) },
                         modifier = Modifier.weight(1f),
@@ -116,7 +121,9 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 11.dp)
-                    .clickable { onNavigate(item.third) },
+                    .clickable {
+                        onNavigate(item.third)
+                    },
                 shape = RoundedCornerShape(18.dp),
                 colors = CardDefaults.cardColors(containerColor = card)
             ) {
@@ -133,11 +140,21 @@ fun HomeScreen(
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold
                         )
+
                         Spacer(Modifier.height(5.dp))
-                        Text(item.second, color = accent, fontSize = 13.sp)
+
+                        Text(
+                            item.second,
+                            color = accent,
+                            fontSize = 13.sp
+                        )
                     }
 
-                    Text("›", color = accent, fontSize = 30.sp)
+                    Text(
+                        "›",
+                        color = accent,
+                        fontSize = 30.sp
+                    )
                 }
             }
         }
@@ -149,5 +166,7 @@ fun HomeScreen(
             color = accent,
             fontSize = 14.sp
         )
+
+        Spacer(Modifier.height(12.dp))
     }
 }
